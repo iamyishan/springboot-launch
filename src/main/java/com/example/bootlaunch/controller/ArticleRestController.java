@@ -2,15 +2,21 @@ package com.example.bootlaunch.controller;
 
 import com.example.bootlaunch.model.AjaxResponse;
 import com.example.bootlaunch.model.Article;
+import com.example.bootlaunch.service.ArticleRestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 @Slf4j
 @Controller
 @RequestMapping("/rest")
 public class ArticleRestController {
+
+    @Resource
+    ArticleRestService articleRestService;
 
  
     //@RequestMapping(value = "/article", method = POST, produces = "application/json")
@@ -21,6 +27,7 @@ public class ArticleRestController {
                                                    @RequestParam String  author) {*/
 
         log.info("saveArticle：{}",article);
+        log.info("articleRestService return :" + articleRestService.saveArticle(article));
 
         return  AjaxResponse.success(article);
     }
